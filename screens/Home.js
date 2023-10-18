@@ -16,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Swipeable } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useScore } from "./ScoreContext";
 
 const PaperNumber = ({ number, onPaperDataChange }) => {
   const [percentage, setPercentage] = useState(0);
@@ -56,7 +57,7 @@ const PaperNumber = ({ number, onPaperDataChange }) => {
   );
 };
 
-const Home = () => {
+const Home = ({ route }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [subject, setSubject] = useState("");
   const [papers, setPapers] = useState(2);
@@ -64,6 +65,7 @@ const Home = () => {
   const [paperData, setPaperData] = useState([]);
   const navigation = useNavigation();
   const [selectedSubject, setSelectedSubject] = useState(null);
+  const { score } = useScore();
 
   const handlePaperDataChange = (paperNumber, field, value) => {
     const updatedPaperData = [...paperData];
@@ -123,7 +125,6 @@ const Home = () => {
   };
   const handleDeleteSubject = async (subjectName) => {
     try {
-      // Remove the subject from subjectList
       const updatedSubjectList = subjectList.filter(
         (subject) => subject !== subjectName,
       );
@@ -136,7 +137,6 @@ const Home = () => {
       console.error("Error deleting subject from local storage:", error);
     }
   };
-
   const renderSubjectListItem = (subject) => {
     const swipeRightAction = (progress, dragX) => {
       const trans = dragX.interpolate({
@@ -163,6 +163,7 @@ const Home = () => {
           titleStyle={{ fontWeight: "bold" }}
           title={subject}
           onPress={() => handleListItemPress(subject)}
+          right={() => <Text>{score}</Text>}
         />
       </Swipeable>
     );

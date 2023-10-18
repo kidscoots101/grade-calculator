@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput, Button } from "react-native-paper";
+import { useScore } from "./ScoreContext";
 
 const Details = ({ route }) => {
   const { subject, paperData } = route.params;
+  const { score, updateScore } = useScore();
 
   const [paperValues, setPaperValues] = useState({});
   const [helpText, setHelpText] = useState("");
 
   const handleTextInputChange = (paperKey, value) => {
     setPaperValues({ ...paperValues, [paperKey]: value });
-    setHelpText(""); // Clear the error message when the user inputs new values.
+    setHelpText("");
   };
 
   const renderPaperInputs = () => {
@@ -55,7 +57,7 @@ const Details = ({ route }) => {
   };
 
   const [grade, setGrade] = useState(0);
-  const [score, setScore] = useState("");
+  // const [score, setScore] = useState("");
 
   const calculateOverallGrade = () => {
     if (helpText) return "N/A";
@@ -76,17 +78,17 @@ const Details = ({ route }) => {
 
     setGrade(totalPercentage.toFixed(2));
     if (grade >= 75 && grade <= 100) {
-      setScore("A1");
+      updateScore("A1");
     } else if (grade < 75 && grade >= 70) {
-      setScore("A2");
+      updateScore("A2");
     } else if (grade < 70 && grade >= 65) {
-      setScore("B3");
+      updateScore("B3");
     } else if (grade < 65 && grade >= 60) {
-      setScore("B4");
+      updateScore("B4");
     } else if (grade < 60 && grade >= 55) {
-      setScore("C5");
+      updateScore("C5");
     } else if (grade < 55 && grade >= 50) {
-      setScore("C6");
+      updateScore("C6");
     }
   };
 
