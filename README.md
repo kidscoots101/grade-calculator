@@ -5,3 +5,4 @@ You can add as many subjects you wish and how many papers there are per subject.
 - You are able to calculate the final grade based on the weightage of each individual paper respectively.
 - You are able to have on overview of your grade (e.g. A1) on the home page of the app.
 - You are able to key in a percentage weightage, and max score attained for each paper for each subject respectively.
+- <img width="433" alt="Screenshot 2023-10-18 at 11 13 49 PM" src="https://github.com/kidscoots101/grade-calculator/assets/102847271/16e1191f-2c8b-485b-8c7d-f663027de440">
