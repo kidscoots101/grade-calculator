@@ -1,4 +1,4 @@
-# Grade-Calculator
+# Grade-Calculator (aka Gradulator)
 I created this to help calculate my test scores for the year. It includes allowing you to group different exams into different folders.
 You can add as many subjects you wish and how many papers there are per subject. 
 # Functions
